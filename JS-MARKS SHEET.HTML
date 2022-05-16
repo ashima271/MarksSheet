@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Marks-sheet</title>
+    <script>
+         var Total;
+      function doTotal() {
+        //alert();
+        var cstr = document.frm.txtA.value;
+        var jstr = document.frm.txtB.value;
+        var webstr = document.frm.txtC.value;
+         Total = parseInt(cstr) + parseInt(jstr) + parseInt(webstr);
+        // alert(Total);//
+        document.frm.txtSum.value = Total;
+        document.getElementById("btnPer").disabled=false;
+        document.getElementById("btnRes").disabled=false;
+      }
+     
+      function doPer() {
+        // alert();//
+        /*var cstr = document.frm.txtA.value;
+        var jstr = document.frm.txtB.value;
+        var webstr = document.frm.txtC.value;
+        var Per =
+          ((parseInt(cstr) + parseInt(jstr) + parseInt(webstr))*/
+         Per=Total/300 * 100;
+        Per = Per.toFixed(2);
+        // alert(Per);//
+        document.frm.txtPer.value = Per;
+      }
+     
+      function doResult() {
+      
+        var grade;
+        if (Per >= 50) grade = "Pass";
+        else grade = "Fail";
+        document.frm.txtRes.value = grade;
+      }
+      function doClr() {
+        document.frm.reset();
+      }
+      function doDisable()
+      {
+        document.getElementById("btnPer").disabled=true;
+        document.getElementById("btnRes").disabled=true;
+      }
+
+      function chk(ref,err,jas)
+      {
+        var val=ref.value;
+        if(val=="")
+        {
+          ref.style.backgroundColor="red";
+          err.innerHTML="Invalid Input";
+          jas.value="0";
+        }
+          else
+          if(isNaN(val))
+          {
+            ref.style.backgroundColor="red";
+            err.innerHTML="Input Numeric Value";
+            jas.value="0";
+          }
+          else
+          {
+            ref.style.backgroundColor="green";
+            err.innerHTML="";
+            jas.value="1";
+          }
+
+        
+      }
+    </script>
+
+
+
+
+
+    <style>
+        fieldset{
+            width: 700px;
+            height: 500px;
+            background-color: gainsboro;
+            box-shadow:15px 5px 5px 5px rgb(172, 169, 169);
+        }
+       
+    </style>
+  </head>
+  <body onload="doDisable();">
+    <center>
+      <form name="frm">
+          <fieldset>
+              <legend>  <h2>MARKS CARD</h2></legend>
+      
+        <p>C++ Marks: <input type="text" name="txtA" onblur="chk(this,errA,jasA);"/>
+        <span id="errA">*</span>
+      <input type="hidden" id="jasA" value="0"></p>
+        <p>Java Marks: <input type="text" name="txtB" onblur="chk(this,errB,jasB);"/>
+        <span id="errB">*</span>
+      <input type="hidden" value="0" id="jasB"></p>
+        <p>Web Marks: <input type="text" name="txtC"  onblur="chk(this,errC,jasC);"/>
+        <span id="errC">*</span>
+      <input type="hidden" value="0" id="jasC"></p>
+        <p>
+            
+          <input type="button" value="Total" onclick="doTotal(); " />
+          <input type="button" value="Percentage" id="btnPer" onclick="doPer();" disabled />
+          <input type="button" value="Reult" id="btnRes" onclick="doResult();"  disabled/>
+          <input type="button" value="Clear" onclick="doClr();" />
+        
+     </p>
+        <p>Total: <input type="text" name="txtSum" /></p>
+        <p>Percentage: <input type="text" name="txtPer" /></p>
+        <p>Result: <input type="text" name="txtRes" /></p>
+        <br><br>
+        <h4>****************************Thank You For Visting****************************</h4>
+      </form>
+    </fieldset>
+    </center>
+
+  </body>
+</html>
